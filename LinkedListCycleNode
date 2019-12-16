@@ -1,0 +1,73 @@
+ public class LinkedListCycleNode
+    {
+        private ListNode _head;
+
+        public class ListNode
+        {
+            public readonly int val;
+            public ListNode next;
+
+            public ListNode(int d)
+            {
+                val = d;
+                next = null;
+            }
+        }
+
+        public void AddAtStart(int data)
+        {
+            ListNode node = new ListNode(data);
+            if (_head == null)
+            {
+                _head = node;
+                return;
+            }
+
+            node.next = _head;
+            _head = node;
+        }
+
+        public void PrintList()
+        {
+            if (_head == null)
+            {
+                return;
+            }
+
+            ListNode temp = _head;
+            while (temp != null)
+            {
+                Console.WriteLine(temp.val);
+                temp = temp.next;
+            }
+        }
+
+       
+
+        public ListNode ReturnLoopStartingNode()
+        {
+            ListNode slow = _head, fast = _head;
+            while (slow != null && fast != null && fast.next != null)
+            {
+                slow = slow.next;
+                fast = fast.next.next;
+                if (slow == fast)
+                {
+                    break;
+                }
+            }
+
+            if (slow != fast)
+            {
+                return null;
+            }
+
+            slow = _head;
+            while (slow != fast)
+            {
+                slow = slow.next;
+                fast = fast.next;
+            }
+            return slow;
+        }
+    }
