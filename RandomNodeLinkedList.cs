@@ -47,7 +47,7 @@
 
             int restult = _head.Data;
             Node current = _head;
-            for (int n = 2; current != null; n++)
+            for (int n = 1; current != null; n++)
             {
 
                 if (new Random().Next() % n == 0)
